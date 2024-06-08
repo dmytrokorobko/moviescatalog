@@ -4,7 +4,7 @@ import { Form } from './components/Form';
 
 function App() {
   const [genres, setGenres] = useState([]);
-  const [movies, setMovies] = useState([]);
+  //const [movies, setMovies] = useState([]);
 
   const [title, setTitle] = useState('');
   const [year, setYear] = useState('');  
@@ -12,12 +12,15 @@ function App() {
 
   useEffect(()=>{
     //load available genres
+    setGenres([]);
   }, [])
 
   function handleSubmit(filterData) {
     setTitle(filterData.title);
     setYear(filterData.year);
     setSelectedGenre(filterData.genre);
+
+    
   }
 
   return (
