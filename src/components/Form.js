@@ -1,9 +1,9 @@
-export function Form({title, year, genres, selectedGenre}) {
+export function Form({title, year, genres, selectedGenre, onButtonSubmit}) {
    return (
       <form>
          <h2>Filters:</h2>
-         <input type="text" value={title} placeholder="You can enter a title or a part of a title" />
-         <input type="number" value={year} placeholder="You can enter a year" />
+         <input type="text" value={title} id="title" placeholder="Enter movie title" />
+         <input type="number" value={year} id="year" placeholder="Enter year" />
          {genres && genres.length > 0 ? (
             <div className="genres">
                <label htmlFor="genres">Genres:</label>
@@ -17,7 +17,15 @@ export function Form({title, year, genres, selectedGenre}) {
          ) : ''}
          <input type="submit" value='Find movies' onSubmit={(e)=>{
             e.preventDefault();
-            
+            const inputTitle = document.getElementById('title').value;
+            const inputYear = document.getElementById('year').value;
+            const inputGenre = document.getElementById('genres').value;
+            const filterData = {
+               title: inputTitle,
+               year: inputYear,
+               genre: inputGenre
+            };
+            onButtonSubmit(filterData);
          }} />
       </form>
    )
